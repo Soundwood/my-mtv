@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
-import { authEndpoint, clientId, redirectUri, scopes } from "./config.js";
+import * as Constants from "./config.js";
 import hash from "./hash";
 import Player from "./Player";
 import YoutubeContainer from './YoutubeContainer'
@@ -77,10 +77,9 @@ class App extends Component {
         return (
             <div>
                 <header className="App-header">
-                    {}
                     {!token && (
                         <>
-                            <a id="login" className="btn btn--loginApp-link" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                            <a id="login" className="btn btn--loginApp-link" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
                                 "%20")}&response_type=token&show_dialog=true`}>Login to Spotify
                             </a>
                             {/* <Canvas /> */}
