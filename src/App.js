@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as $ from "jquery";
 import * as Constants from "./config.js";
 import hash from "./hash";
 import Player from "./Player";
@@ -37,39 +36,40 @@ class App extends Component {
         }
         this.interval = setInterval(() => this.tick(), 5000);
     }
+
     componentWillUnmount() {
         clearInterval(this.interval);
     }
+
     tick() {
         if(this.state.token) {
             this.getCurrentlyPlaying(this.state.token);
         }
     }
+
     getCurrentlyPlaying(token) {
-        // Make a call using the token
-        $.ajax({
-            url: "https://api.spotify.com/v1/me/player",
-            type: "GET",
-            beforeSend: xhr => {
-                xhr.setRequestHeader("Authorization", "Bearer " + token);
-            },
-            success: data => {
-                // Checks if the data is not empty
-                if(!data) {
-                    this.setState({
-                        no_data: true,
-                    });
-                    return;
-                }
-                this.setState({
-                    item: data.item,
-                    is_playing: data.is_playing,
-                    progress_ms: data.progress_ms,
-                    no_data: false /* We need to "reset" the boolean, in case the
-                                        user does not give F5 and has opened his Spotify. */
-                });
+        fetch("https://api.spotify.com/v1/me/player", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
             }
-        });
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(!data) {
+                this.setState({
+                    no_data: true,
+                });
+                return;
+            }
+            this.setState({
+                item: data.item,
+                is_playing: data.is_playing,
+                progress_ms: data.progress_ms,
+                no_data: false /* We need to "reset" the boolean, in case the
+                                    user does not give F5 and has opened his Spotify. */
+            })
+        })
     }
 
     render() {
