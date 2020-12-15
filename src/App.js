@@ -83,7 +83,7 @@ class App extends Component {
                             <a id="login" className="btn btn--loginApp-link" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
                                 "%20")}&response_type=token&show_dialog=true`}>Login to Spotify
                             </a>
-                            {/* <Canvas /> */}
+                            { <Canvas /> }
                         </>)}
                     {token && !no_data && (
                         <>
