@@ -4,6 +4,7 @@ import { authEndpoint, clientId, redirectUri, scopes } from "./config.js";
 import hash from "./hash";
 import Player from "./Player";
 import YoutubeContainer from './YoutubeContainer'
+import Canvas from './Canvas'
 
 class App extends Component {
     constructor() {
@@ -78,9 +79,12 @@ class App extends Component {
                 <header className="App-header">
                     {}
                     {!token && (
-                        <a className="btn btn--loginApp-link" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                            "%20")}&response_type=token&show_dialog=true`}>Login to Spotify
-                        </a>)}
+                        <>
+                            <a id="login" className="btn btn--loginApp-link" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                                "%20")}&response_type=token&show_dialog=true`}>Login to Spotify
+                            </a>
+                            {/* <Canvas /> */}
+                        </>)}
                     {token && !no_data && (
                         <>
                             <Player item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />

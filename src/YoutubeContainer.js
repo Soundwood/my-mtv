@@ -47,7 +47,7 @@ export default class YoutubeContainer extends Component {
                     frameborder='0'
                     allow='autoplay; encrypted-media'
                     allowfullscreen
-                    title='video'
+                    title={this.state.description}
                 />
             </div>
         )
