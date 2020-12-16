@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as Constants from './config'
+import youtube from './YoutubeAPI'
 
 export default class YoutubeContainer extends Component {
     constructor (props) {
@@ -11,36 +12,27 @@ export default class YoutubeContainer extends Component {
             mute: 1
         }
     }
-    componentDidMount() {
-        const apiComp = "&safeSearch=none&type=video&key="
-        const apiInjectionString = `&q=${this.props.item.artists[0].name}%20${this.props.item.name}%20music%20video`
-        fetch(`${Constants.YOUTUBE_API_BASE_URL}${apiInjectionString}${apiComp}${Constants.YOUTUBE_API_KEY}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log('data: ', data)
-            this.setState({
-                channel: data.items[0].snippet.channelTitle,
-                description: data.items[0].snippet.description,
-                youtubeVid: data.items[0].id.videoId,
-                mute: 1
-            })
+    youtubeSearch = async (searchTerm) => {
+        const response = await youtube.get('/search', {
+            params: {
+                q: searchTerm
+            }
         })
+        this.setState({
+            channel: response.data.items[0].snippet.channelTitle,
+            description: response.data.items[0].snippet.title,
+            youtubeVid: response.data.items[0].id.videoId,
+            mute: 1
+        })
+    };
+    
+    componentDidMount() {
+        this.youtubeSearch(`${this.props.item.artists[0].name} ${this.props.item.name} music video`)
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.item.name !== prevProps.item.name){
-            const apiComp = "&safeSearch=none&type=video&key="
-            const apiInjectionString = `&q=${this.props.item.artists[0].name}%20${this.props.item.name}%20music%20video`
-            fetch(`${Constants.YOUTUBE_API_BASE_URL}${apiInjectionString}${apiComp}${Constants.YOUTUBE_API_KEY}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    channel: data.items[0].snippet.channelTitle,
-                    description: data.items[0].snippet.description,
-                    youtubeVid: data.items[0].id.videoId,
-                    mute: 1
-                })
-            })
+            this.youtubeSearch(`${this.props.item.artists[0].name} ${this.props.item.name} music video`)
         }
     }
     
