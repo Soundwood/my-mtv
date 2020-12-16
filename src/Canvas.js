@@ -57,7 +57,7 @@ const Canvas = () => {
         animate()
     }, [])
     return (
-        <canvas id="canvas1" ref={canvasRef}/>
+        <canvas id="canvas1" className="canvas1" ref={canvasRef}/>
     );
 };
 

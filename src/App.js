@@ -76,26 +76,24 @@ class App extends Component {
         const { token, item, no_data } = this.state
         return (
             <div>
-                <header className="App-header">
-                    {!token && (
-                        <>
-                            <a id="login" className="btn btn--loginApp-link" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
-                                "%20")}&response_type=token&show_dialog=true`}>Login to Spotify
-                            </a>
-                            <Canvas />
-                        </>)}
-                    {token && !no_data && (
-                        <>
-                            <Player item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
-                            <YoutubeContainer item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
-                        </>
-                    )}
-                    {no_data && (
-                        <p>
-                            You need to be playing a song on Spotify, for something to appear here.
-                        </p>
-                    )}
-                </header>
+                {!token && (
+                    <>
+                        <Canvas />
+                        <a id="login" className="login" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
+                            "%20")}&response_type=token&show_dialog=true`}>Login with Spotify
+                        </a>
+                    </>)}
+                {token && !no_data && (
+                    <>
+                        <Player item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
+                        <YoutubeContainer item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
+                    </>
+                )}
+                {no_data && (
+                    <p>
+                        You need to be playing a song on Spotify, for something to appear here.
+                    </p>
+                )}
             </div>
         );
     }
