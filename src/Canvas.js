@@ -27,12 +27,31 @@ const Canvas = () => {
                 particlesArray.push(new Particle(x,y,directionX,directionY,size,color,ctx,width,height))
             }
         }
+        function connect() {
+            let inverseLineDensity = 12
+            let opacity = 1
+            for (let a=0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x-particlesArray[b].x)**2)+((particlesArray[a].y-particlesArray[b].y)**2)
+                    if (distance < (canvas.width/inverseLineDensity) * (canvas.height/inverseLineDensity)) {
+                        opacity = 1 - (distance/10000)
+                        ctx.strokeStyle = `rgba(140,85,31,${opacity})`
+                        ctx.lineWidth = 1
+                        ctx.beginPath()
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
+                        ctx.stroke()
+                    }
+                }
+            }
+        }
         function animate() {
             requestAnimationFrame(animate)
             ctx.clearRect(0,0,width,height)
             for (let i=0; i < particlesArray.length; i++) {
                 particlesArray[i].update()
             }
+            connect()
         }
         init()
         animate()
