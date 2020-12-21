@@ -79,8 +79,8 @@ class App extends Component {
                 {!token && (
                     <>
                         <Canvas />
-                        <a id="login" className="login" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
-                            "%20")}&response_type=token&show_dialog=true`}>Login with Spotify
+                        <a className="button" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
+                            "%20")}&response_type=token&show_dialog=true`}>LOGIN WITH SPOTIFY
                         </a>
                     </>)}
                 {token && !no_data && (

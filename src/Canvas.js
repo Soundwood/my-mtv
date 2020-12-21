@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Particle from './Particle'
+import * as Constants from './Constants'
 
 let particlesArray = []
 
@@ -22,7 +23,7 @@ const Canvas = () => {
                 let y = (Math.random()*((canvas.height-size*2)-(size*2))+size*2)
                 let directionX = (Math.random()*5)-2.5
                 let directionY = (Math.random()*5)-2.5
-                let color = '#8c5523'
+                let color = Constants.PURPLE
 
                 particlesArray.push(new Particle(x,y,directionX,directionY,size,color,ctx,width,height))
             }

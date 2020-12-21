@@ -32,7 +32,7 @@ export default class YoutubeContainer extends Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.item.name !== prevProps.item.name){
-            this.youtubeSearch(`${this.props.item.artists[0].name} ${this.props.item.name} music video`)
+            this.youtubeSearch(`${this.props.item.artists[0].name} ${this.props.item.name} official music video`)
         }
     }
     

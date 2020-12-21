@@ -2,19 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: verdana;
 }
-div {
-    padding: 10px
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: #E27060;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    width: 40%;
+    text-align: center;
+    font-size: 40px;
 }
 .canvas1 {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(#ffc38c, #ff9b40);
-}
-.login {
-    position: relative;
-    margin: auto;
-    width: 10%;
+    background: radial-gradient(#7eb3ab, #41b3a3);
 }
