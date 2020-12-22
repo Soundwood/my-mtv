@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import * as Constants from "./config.js";
-import hash from "./hash";
-import Player from "./Player";
+import React, { Component } from 'react';
+import * as Secrets from './config.js';
+import * as Constants from './Constants'
+import hash from './hash';
+import Player from './Player';
 import YoutubeContainer from './YoutubeContainer'
 import Canvas from './Canvas'
 
@@ -79,7 +80,7 @@ class App extends Component {
                 {!token && (
                     <>
                         <Canvas />
-                        <a className="button" href={`${Constants.authEndpoint}?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
+                        <a className="button" href={`${Constants.authEndpoint}?client_id=${Secrets.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
                             "%20")}&response_type=token&show_dialog=true`}>LOGIN WITH SPOTIFY
                         </a>
                     </>)}
