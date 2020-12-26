@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as Constants from './config'
+import * as Constants from './Constants'
 import youtube from './YoutubeAPI'
 
 export default class YoutubeContainer extends Component {
