@@ -5,6 +5,7 @@ import hash from './hash';
 import Player from './Player';
 import YoutubeContainer from './YoutubeContainer'
 import Canvas from './Canvas'
+import Background from './Background'
 
 class App extends Component {
     constructor() {
@@ -76,24 +77,29 @@ class App extends Component {
     render() {
         const { token, item, no_data } = this.state
         return (
-            <div>
+            <div className='app_main'>
                 {!token && (
-                    <>
+                    <div className='login_main'>
                         <Canvas />
                         <a className="button" href={`${Constants.authEndpoint}?client_id=${Secrets.clientId}&redirect_uri=${Constants.redirectUri}&scope=${Constants.scopes.join(
                             "%20")}&response_type=token&show_dialog=true`}>LOGIN WITH SPOTIFY
                         </a>
-                    </>)}
+                    </div>)}
                 {token && !no_data && (
                     <>
-                        <Player item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
-                        <YoutubeContainer item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
+                        <Background />
+                        <div className='player_main'>
+                            <YoutubeContainer item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
+                            <Player item={item} is_playing={this.state.is_playing} progress_ms={this.state.progress_ms} />
+                        </div>
                     </>
                 )}
                 {no_data && (
-                    <p>
-                        You need to be playing a song on Spotify, for something to appear here.
-                    </p>
+                    <div className='player_main'>
+                        <p>
+                            You need to be playing a song on Spotify, for something to appear here.
+                        </p>
+                    </div>
                 )}
             </div>
         );

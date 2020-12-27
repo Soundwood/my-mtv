@@ -10,12 +10,16 @@ a.button {
     appearance: button;
     text-decoration: none;
     color: #E27060;
-    position: absolute;
+    position: relative;
     margin: auto;
     top: 50%;
     width: 40%;
     text-align: center;
     font-size: 40px;
+}
+iframe {
+    width: 100%;
+    height: 100%;
 }
 .canvas1 {
     position: absolute;
@@ -23,4 +27,23 @@ a.button {
     width: 100%;
     height: 100%;
     background: radial-gradient(#7eb3ab, #41b3a3);
+}
+.player_main {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 50px
+}
+.canvas2 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(#e2a97a, #dd7622);
+}
+.youtube_wrapper {
+    flex-grow: 4;
+}
+.now_playing_img {
+    margin: 50px;
 }

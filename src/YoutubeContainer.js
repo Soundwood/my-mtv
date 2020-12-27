@@ -38,8 +38,8 @@ export default class YoutubeContainer extends Component {
     
     render() {
         return (
-            <div>
-                <iframe width="840" height="630"
+            <div className="youtube_wrapper">
+                <iframe 
                     src={`${Constants.YOUTUBE_BASE_URL}/embed/${this.state.youtubeVid}?autoplay=1&mute=1`}
                     frameborder='0'
                     allow='autoplay; encrypted-media'
